@@ -10,41 +10,41 @@ import ShoppingCart from "../components/ShoppingCart"
 const CartScreen = () => {
 
  // Firestore fetch images
- const [cartItems, setCartItems] = useState([])
- const cartItemRef = firebase.firestore().collection("cartImages")
+ const [images, setImages] = useState([])
+ const imageRef = firebase.firestore().collection("cartImages")
 
  useEffect(() => {
-     cartItemRef
+     imageRef
      .onSnapshot(
          (querySnapshot) => {
-             const cartItems = []
+             const images = []
              querySnapshot.forEach((doc) => {
-                 const { image, rating, calories, price, quantity } = doc.data()
-                 cartItems.push({
+                 const { image, rating, calories, price } = doc.data()
+                 images.push({
                      id: doc.id,
                      image,
                      rating,
                      calories,
                      price,
-                     quantity,
                  })
              })
-             setCartItems(cartItems)
+             setImages(images)
          })
  }, [])
 
 
 
     const [cartProducts, setCartProducts] = useState()
+    const [quantity, setQuantity] = useState(1);
     const navigation = useNavigation()
 
     const width = Dimensions.get("window").width
     const height = Dimensions.get("window").height
 
 
-      const totalPrice = cartItems.reduce(
-        (summedPrice, cartItems) => 
-          summedPrice + (cartItems?.cartItems?.price || 0) * cartItems.quantity, 0)
+      const totalPrice = images.reduce(
+        (summedPrice, images) => 
+          summedPrice + (images?.images?.price || 0) * images.quantity, 0)
 
 
 // Back Button
@@ -67,7 +67,6 @@ const CartScreen = () => {
 
 
   return (
-
     <ScrollView>
       <View>
         <View style={{marginVertical: 20}}>
@@ -78,26 +77,25 @@ const CartScreen = () => {
           {/* Dollar amount of order */}
             <Text 
                 style={{fontSize: 14, justifyContent: 'center', alignItems: 'center', textAlign: 'center', letterSpacing: .6}}>
-                    Items in cart (<Text style={{color: '#ED91AD', letterSpacing: 2}}>{cartItems.length}</Text>) :{" "} 
+                    Items in cart (<Text style={{color: '#ED91AD', letterSpacing: 2}}>{images.length}</Text>) :{" "} 
                     <Text style={{color: '#ED91AD', fontSize:16}}>${totalPrice.toFixed(2)}</Text>
             </Text>
         </View>
         <ScrollView style={{marginTop: 20}}>
           <FlatList
               horizontal
-              data={cartItems}
+              data={images}
               snapToInterval={width + -80}
               decelerationRate={"fast"}
               showsHorizontalScrollIndicator={false}
               renderItem={({item, id}) => (
                 <CartProductItem
-                  key={id}
                   item={item}
-                  data={item}
+                  key={id}
                 />
               )}
           />
-          {/* <ShoppingCart /> */}
+          <ShoppingCart />
         </ScrollView>
       <View style={{marginBottom: 40, justifyContent: "center", alignItems: "center", textAlign: "center",}}>
         <AddToCartButton onPress={() => {}} />

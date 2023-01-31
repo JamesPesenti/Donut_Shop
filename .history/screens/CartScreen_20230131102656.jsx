@@ -36,6 +36,7 @@ const CartScreen = () => {
 
 
     const [cartProducts, setCartProducts] = useState()
+    const [quantity, setQuantity] = useState(1);
     const navigation = useNavigation()
 
     const width = Dimensions.get("window").width
@@ -93,7 +94,7 @@ const CartScreen = () => {
                 <CartProductItem
                   key={id}
                   item={item}
-                  data={item}
+                  data={cartItems}
                 />
               )}
           />

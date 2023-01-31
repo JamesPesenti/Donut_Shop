@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Pressable } from 'react-native'
 // const navigation = useNavigation()
 
 
-const QuantityButtons = ({ quantity, setQuantity, cartItems }) => {
+const QuantityButtons = ({ quantity, setQuantity }) => {
 
   const onDecrement = () => {
     setQuantity(Math.max(0, quantity - 1))
@@ -16,6 +16,7 @@ const QuantityButtons = ({ quantity, setQuantity, cartItems }) => {
 
 
   return (
+
     <>
       <View style={styles.container}>
             <Pressable
@@ -25,7 +26,7 @@ const QuantityButtons = ({ quantity, setQuantity, cartItems }) => {
                 <Text style={styles.buttonText}>--</Text>
             </Pressable>
 
-            <Text style={styles.quantity}>{quantity}</Text>
+            <Text style={styles.quantity}>{item.quantity}</Text>
 
             <Pressable
                 style={styles.buttons}
@@ -39,7 +40,6 @@ const QuantityButtons = ({ quantity, setQuantity, cartItems }) => {
 }
 
 export default QuantityButtons
-
 
 const styles = StyleSheet.create({
     container: {

@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Pressable } from 'react-native'
 // const navigation = useNavigation()
 
 
-const QuantityButtons = ({ quantity, setQuantity, cartItems }) => {
+const QuantityButtons = ({ quantity, setQuantity }) => {
 
   const onDecrement = () => {
     setQuantity(Math.max(0, quantity - 1))
@@ -39,7 +39,6 @@ const QuantityButtons = ({ quantity, setQuantity, cartItems }) => {
 }
 
 export default QuantityButtons
-
 
 const styles = StyleSheet.create({
     container: {

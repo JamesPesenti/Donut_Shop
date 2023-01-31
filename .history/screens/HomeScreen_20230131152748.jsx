@@ -121,7 +121,7 @@ const HomeScreen = () => {
                 <View style={styles.container}>
                         {/* Halloween */}
                         {/* <ThanksgivingHeader /> */}
-                          <ChristmasHeader />
+                          {/* <ChristmasHeader /> */}
                         <ScrollView style={{overflow: "hidden", marginTop: 100, paddingBottom: 0}}>
                           <View>
                             <ImageBackground

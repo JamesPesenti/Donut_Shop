@@ -25,7 +25,7 @@ const QuantityButtons = ({ quantity, setQuantity, cartItems }) => {
                 <Text style={styles.buttonText}>--</Text>
             </Pressable>
 
-            <Text style={styles.quantity}>{quantity}</Text>
+            <Text style={styles.quantity}>{cartItems.quantity}</Text>
 
             <Pressable
                 style={styles.buttons}

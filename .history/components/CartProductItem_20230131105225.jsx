@@ -67,7 +67,7 @@ const CartProductItem = ({item, cartItems}) => {
               style={{width: 50, height: 50, backgroundColor: 'grey', padding: 5}}
               onPress={() => {}}
               >
-              <Text>{cartItems}</Text>
+              <Text>mkddeod</Text>
             </View>
             {/* <QuantityButtons
                 cartItems={cartItems}

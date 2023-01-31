@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import {Button, Animated, Image, View, Text, Pressable, ScrollView, Dimensions} from 'react-native';
+import {Animated, Image, View, Text, Pressable, ScrollView, Dimensions} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styles from '../assets/styles';
 import QuantityButtons from "../components/QuantityButtons"
@@ -63,17 +63,11 @@ const CartProductItem = ({item, cartItems}) => {
             <Text style={styles.priceText}>sale ${item.price}! {item.price && (<Text style={{fontSize: 16, textDecorationLine: 'line-through', textDecorationLineColor: "red"}}>$2.99</Text>)}</Text>
         </View>
         <View style={{marginTop: -10}}>
-            <View 
-              style={{width: 50, height: 50, backgroundColor: 'grey', padding: 5}}
-              onPress={() => {}}
-              >
-              <Text>{cartItems}</Text>
-            </View>
-            {/* <QuantityButtons
+            <QuantityButtons
                 cartItems={cartItems}
-                quantity={quantity}
-                setQuantity={setQuantity}
-            /> */}
+                // quantity={quantity}
+                // setQuantity={setQuantity}
+            />
         </View>
     </View>
     </View>

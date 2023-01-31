@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import {Button, Animated, Image, View, Text, Pressable, ScrollView, Dimensions} from 'react-native';
+import {Animated, Image, View, Text, Pressable, ScrollView, Dimensions} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styles from '../assets/styles';
 import QuantityButtons from "../components/QuantityButtons"
@@ -9,9 +9,9 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 
 
-const CartProductItem = ({item, cartItems}) => {
+const CartProductItem = ({item}) => {
 
-  const [quantity, setQuantity] = useState(cartItems)
+  const [quantity, setQuantity] = useState(1)
   const navigation = useNavigation();
 
   const height = Dimensions.get("window").height
@@ -60,20 +60,13 @@ const CartProductItem = ({item, cartItems}) => {
         </View>
             <Text style={styles.caloriesText}>{item.calories} Cal</Text>
             {/* conditional check if item is on sale or not */}
-            <Text style={styles.priceText}>sale ${item.price}! {item.price && (<Text style={{fontSize: 16, textDecorationLine: 'line-through', textDecorationLineColor: "red"}}>$2.99</Text>)}</Text>
+            <Text style={styles.priceText}>sale ${item.price.toFixed(2)}! {item.price && (<Text style={{fontSize: 16, textDecorationLine: 'line-through', textDecorationLineColor: "red"}}>$2.99</Text>)}</Text>
         </View>
         <View style={{marginTop: -10}}>
-            <View 
-              style={{width: 50, height: 50, backgroundColor: 'grey', padding: 5}}
-              onPress={() => {}}
-              >
-              <Text>{cartItems}</Text>
-            </View>
-            {/* <QuantityButtons
-                cartItems={cartItems}
+            <QuantityButtons
                 quantity={quantity}
                 setQuantity={setQuantity}
-            /> */}
+            />
         </View>
     </View>
     </View>

@@ -23,6 +23,7 @@ import ChristmasHeader from '../components/ChristmasHeader'
 import { auth } from '../firebase'
 import firebase from "firebase"
 
+import ShoppingCart from "../components/ ShoppingCart"
 
 const HomeScreen = () => {
 

@@ -63,11 +63,8 @@ const CartProductItem = ({item, cartItems}) => {
             <Text style={styles.priceText}>sale ${item.price}! {item.price && (<Text style={{fontSize: 16, textDecorationLine: 'line-through', textDecorationLineColor: "red"}}>$2.99</Text>)}</Text>
         </View>
         <View style={{marginTop: -10}}>
-            <View 
-              style={{width: 50, height: 50, backgroundColor: 'grey', padding: 5}}
-              onPress={() => {}}
-              >
-              <Text>{cartItems}</Text>
+            <View style={{width: 20, height: 20, backgroundColor: 'grey', padding: 5, }}>
+              <Text>10</Text>
             </View>
             {/* <QuantityButtons
                 cartItems={cartItems}

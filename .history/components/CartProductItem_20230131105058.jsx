@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 const CartProductItem = ({item, cartItems}) => {
 
-  const [quantity, setQuantity] = useState(cartItems)
+  const [quantity, setQuantity] = useState()
   const navigation = useNavigation();
 
   const height = Dimensions.get("window").height
@@ -67,7 +67,7 @@ const CartProductItem = ({item, cartItems}) => {
               style={{width: 50, height: 50, backgroundColor: 'grey', padding: 5}}
               onPress={() => {}}
               >
-              <Text>{cartItems}</Text>
+              <Text>{quantity}</Text>
             </View>
             {/* <QuantityButtons
                 cartItems={cartItems}

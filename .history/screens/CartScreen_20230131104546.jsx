@@ -85,7 +85,7 @@ const CartScreen = () => {
         <ScrollView style={{marginTop: 20}}>
           <FlatList
               horizontal
-              data={cartItems}
+              data={cartImages}
               snapToInterval={width + -80}
               decelerationRate={"fast"}
               showsHorizontalScrollIndicator={false}
@@ -93,7 +93,7 @@ const CartScreen = () => {
                 <CartProductItem
                   key={id}
                   item={item}
-                  data={item}
+                  data={cartItems}
                 />
               )}
           />

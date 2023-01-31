@@ -5,7 +5,6 @@ import { auth } from '../firebase'
 import Svg, { Image, Ellipse, ClipPath } from "react-native-svg"
 import Animated, { useSharedValue, useAnimatedStyle, interpolate, withTiming, withDelay } from "react-native-reanimated"
 import Star from "../components/Star"
-import DonutX from "../components/DonutX"
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
 
 
@@ -128,7 +127,9 @@ return (
           onPress={handleClose}
           style={{justifyContent: "center", alignItems: "center"}}
         >
-          <DonutX />
+          <Image
+            source={{ uri: "https://t3.ftcdn.net/jpg/01/99/15/04/240_F_199150463_mdYRXvPzRZui5WQ4dzZvnaUht93bOzw1.jpg"}}
+            style={{width: 30, height: 30, top: -3, borderRadius: 50}} />
         </Pressable>
         </Animated.View>
       </Animated.View>

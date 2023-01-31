@@ -93,7 +93,7 @@ const CartScreen = () => {
                 <CartProductItem
                   key={id}
                   item={item}
-                  data={item}
+                  data={cartItems}
                 />
               )}
           />
