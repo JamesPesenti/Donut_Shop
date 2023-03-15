@@ -1,0 +1,106 @@
+type Cart @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  userID: ID
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  email: AWSEmail
+  password: String
+  sub: String
+  Baskets: [Basket] @hasMany(indexName: "byUser", fields: ["id"])
+  Order: [Order] @hasMany(indexName: "byUser", fields: ["id"])
+  Cart: Cart @hasOne
+}
+
+enum OrderStatus {
+  NEW
+  COOKING
+  READY
+}
+
+type Order @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  userID: ID! @index(name: "byUser")
+  total: Float
+  status: OrderStatus
+  Restaurant: Restaurant @hasOne
+  OrderDishes: [OrderDish] @hasMany(indexName: "byOrder", fields: ["id"])
+  Donuts: [Donut] @hasMany(indexName: "byOrder", fields: ["id"])
+}
+
+type Donut @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  flavor: String
+  image: String
+  options: [String]
+  price: Float
+  oldPrice: Float
+  quantity: Int
+  calories: Int
+  avgRating: Float
+  orderID: ID @index(name: "byOrder")
+  favoritesID: ID @index(name: "byFavorites")
+  descriptiion: String
+}
+
+type Favorites @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  flavor: String
+  image: String
+  options: [String]
+  price: Float
+  oldPrice: Float
+  calories: Int
+  avgRating: Float
+  quantity: Int
+  Donut: Donut @hasOne
+  donutID: ID
+  Donuts: [Donut] @hasMany(indexName: "byFavorites", fields: ["id"])
+}
+
+type Basket @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  BasketDishes: [BasketDish] @hasMany(indexName: "byBasket", fields: ["id"])
+  userID: ID! @index(name: "byUser")
+  restaurantID: ID! @index(name: "byRestaurant")
+}
+
+type OrderDish @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  quantity: Int!
+  Dish: Dish @hasOne
+  orderID: ID! @index(name: "byOrder")
+}
+
+type BasketDish @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  quantity: Int!
+  Dish: Dish @hasOne
+  basketID: ID! @index(name: "byBasket")
+}
+
+type Dish @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  image: String
+  description: String
+  price: Float!
+  restaurantID: ID! @index(name: "byRestaurant")
+}
+
+type Restaurant @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  image: String!
+  deliveryFee: Float!
+  minDeliveryTime: Int!
+  maxDeliveryTime: Int!
+  rating: Float
+  address: String!
+  lat: Float!
+  lng: Float!
+  Dishes: [Dish] @hasMany(indexName: "byRestaurant", fields: ["id"])
+  Baskets: [Basket] @hasMany(indexName: "byRestaurant", fields: ["id"])
+}
+ 

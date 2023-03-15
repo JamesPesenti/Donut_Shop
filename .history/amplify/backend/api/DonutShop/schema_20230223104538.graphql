@@ -1,0 +1,58 @@
+type Cart @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  userID: ID
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  email: AWSEmail
+  password: String
+  sub: String
+  Order: [Order] @hasMany(indexName: "byUser", fields: ["id"])
+  Cart: Cart @hasOne
+}
+
+enum OrderStatus {
+  NEW
+  COOKING
+  READY
+}
+
+type Order @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  total: Float
+  status: OrderStatus
+  Donuts: [Donut] @hasMany(indexName: "byOrder", fields: ["id"])
+  userID: ID! @index(name: "byUser")
+}
+
+type Donut @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  flavor: String
+  image: String
+  options: [String]
+  price: Float
+  oldPrice: Float
+  quantity: Int
+  calories: Int
+  avgRating: Float
+  orderID: ID @index(name: "byOrder")
+  favoritesID: ID @index(name: "byFavorites")
+  descriptiion: String
+}
+
+type Favorites @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  flavor: String
+  image: String
+  options: [String]
+  price: Float
+  oldPrice: Float
+  calories: Int
+  avgRating: Float
+  quantity: Int
+  Donut: Donut @hasOne
+  donutID: ID
+  Donuts: [Donut] @hasMany(indexName: "byFavorites", fields: ["id"])
+}
+ 
